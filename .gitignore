@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# config files
+config.json
+
 # testing
 /coverage
 
