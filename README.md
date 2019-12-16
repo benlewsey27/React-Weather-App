@@ -1,7 +1,7 @@
 # React-Weather-App
 
 ### About
-This is a sample project using React.js and OpenWeaterMap API.
+This is a sample project using React.js and OpenWeatherMap API.
 
 ![]( ./images/MainPage.png)
 
