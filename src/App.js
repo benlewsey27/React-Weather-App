@@ -54,9 +54,9 @@ class App extends React.Component {
     return (
       <div>
         <center className='jumbotron mb-0 rounded-0'>
-          <h1 className="mt-4">Weather App</h1>
+          <h1 className="mt-4 mb-4">Weather App</h1>
           <input type="text" id="input"></input>
-          <button className='mb-4 ml-2' onClick={() => {this.addElement()}}>Submit</button>
+          <button className='mb-4 ml-2 rounded' onClick={() => {this.addElement()}}>Submit</button>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
         <WeatherCard cards={this.state.cards} />
