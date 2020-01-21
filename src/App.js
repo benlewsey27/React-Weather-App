@@ -13,11 +13,9 @@ class App extends React.Component {
   async getTempature(place){
     // Get API_Key from https://openweathermap.org/api
     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${API_Key}`);
-      
-    console.log(response)
 
-      const temp = Math.round((response.data.main.temp - 273.15)*10)/10
-      return temp;
+    const temp = Math.round((response.data.main.temp - 273.15)*10)/10
+    return temp;
   }
 
   formatTitle(title){
