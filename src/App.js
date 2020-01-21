@@ -11,6 +11,14 @@ class App extends React.Component {
     cards: []
   };
 
+  removeCard(id){
+    let newArray = this.state.cards.filter((item) => item.id !== id);
+
+    this.setState({
+      cards: newArray
+    })
+  }
+
   async getTempature(place){
     // Get API_Key from https://openweathermap.org/api
     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${API_Key}`);
