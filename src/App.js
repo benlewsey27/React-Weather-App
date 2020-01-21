@@ -1,6 +1,7 @@
 import React from "react";
 import WeatherCard from "./components/Weather-Card";
 import axios from 'axios';
+import uuid from 'uuid';
 import './App.css'
 
 const { API_Key } = require('./config.json');
@@ -10,14 +11,20 @@ class App extends React.Component {
     cards: []
   };
 
+  removeCard(id){
+    let newArray = this.state.cards.filter((item) => item.id !== id);
+
+    this.setState({
+      cards: newArray
+    })
+  }
+
   async getTempature(place){
     // Get API_Key from https://openweathermap.org/api
     const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${API_Key}`);
-      
-    console.log(response)
 
-      const temp = Math.round((response.data.main.temp - 273.15)*10)/10
-      return temp;
+    const temp = Math.round((response.data.main.temp - 273.15)*10)/10
+    return temp;
   }
 
   formatTitle(title){
@@ -38,7 +45,7 @@ class App extends React.Component {
         inputForm.value = "";
         errorMessage.style.display = 'none';
 
-        const newArray = this.state.cards.concat({ title: title, body: body });
+        const newArray = this.state.cards.concat({ id: uuid.v1(), title: title, body: body });
         this.setState({
           cards: newArray
         });
@@ -59,7 +66,7 @@ class App extends React.Component {
           <button className='mb-4 ml-2 rounded' onClick={() => {this.addElement()}}>Submit</button>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
-        <WeatherCard cards={this.state.cards} />
+        <WeatherCard cards={this.state.cards} removeCard={this.removeCard.bind(this)} />
       </div>
     );
   }
