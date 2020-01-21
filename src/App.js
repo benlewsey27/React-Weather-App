@@ -66,7 +66,7 @@ class App extends React.Component {
           <button className='mb-4 ml-2 rounded' onClick={() => {this.addElement()}}>Submit</button>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
-        <WeatherCard cards={this.state.cards} />
+        <WeatherCard cards={this.state.cards} removeCard={this.removeCard.bind(this)} />
       </div>
     );
   }
