@@ -4,7 +4,7 @@ const WeatherCard = props => {
   return (
     <div>
       {props.cards.map(card => (
-        <div>
+        <div key={card.id}>
           <div className="card rounded-0">
             <div className="card-body">
               <u>

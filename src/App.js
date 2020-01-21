@@ -1,6 +1,7 @@
 import React from "react";
 import WeatherCard from "./components/Weather-Card";
 import axios from 'axios';
+import uuid from 'uuid';
 import './App.css'
 
 const { API_Key } = require('./config.json');
@@ -36,7 +37,7 @@ class App extends React.Component {
         inputForm.value = "";
         errorMessage.style.display = 'none';
 
-        const newArray = this.state.cards.concat({ title: title, body: body });
+        const newArray = this.state.cards.concat({ id: uuid.v1(), title: title, body: body });
         this.setState({
           cards: newArray
         });
