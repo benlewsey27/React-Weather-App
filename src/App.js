@@ -4,8 +4,6 @@ import axios from 'axios';
 import uuid from 'uuid';
 import './App.css'
 
-const { API_Key } = require('./config.json');
-
 class App extends React.Component {
   state = {
     cards: []
@@ -21,7 +19,9 @@ class App extends React.Component {
 
   async getTempature(place){
     // Get API_Key from https://openweathermap.org/api
-    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${API_Key}`);
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+    
+    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`);
 
     const temp = Math.round((response.data.main.temp - 273.15)*10)/10
     return temp;
