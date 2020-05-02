@@ -1,6 +1,7 @@
 import React from "react";
-import WeatherComponent from './components/WeatherComponent'
-import './App.css'
+import './App.css';
+
+import WeatherComponent from './components/WeatherComponent';
 
 function App(props) {
   return (
