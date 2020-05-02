@@ -1,10 +1,6 @@
 import React from "react";
 
-class WeatherCard extends React.Component {
-  sendData = (title) => {
-    this.props.removeCard(title);
-  }
-  
+class WeatherCard extends React.Component {  
   render() {
     return (
       <div>
@@ -16,7 +12,7 @@ class WeatherCard extends React.Component {
                   <h5 className="card-title">{card.title}</h5>
                 </u>
                 <p className="card-text">{card.body}</p>
-                <button onClick={() => this.sendData(card.id)} className="btn-danger rounded">Delete</button>
+                <button onClick={() => this.props.removeCard(card.id)} className="btn-danger rounded">Delete</button>
               </div>
             </div>
           </div>
