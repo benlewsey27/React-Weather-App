@@ -37,7 +37,7 @@ class Weather extends React.Component {
         const title = this.formatTitle(inputForm.value);
         const temp = await this.getTempature(title);
 
-        const body = `The tempature is ${temp} degrees celcius.`
+        const body = `The tempature is ${temp}\xB0C.`
 
         inputForm.value = "";
 
