@@ -2,7 +2,7 @@ import React from "react";
 import uuid from 'uuid';
 import axios from 'axios';
 
-class WeatherComponent extends React.Component {
+class Weather extends React.Component {
   state = {
     cards: []
   };
@@ -95,4 +95,4 @@ class WeatherComponent extends React.Component {
   }
 }
 
-export default WeatherComponent;
+export default Weather;
