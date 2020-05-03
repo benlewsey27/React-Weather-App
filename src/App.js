@@ -7,7 +7,6 @@ function App() {
   return (
     <div>
       <NavBar/>
-      <br/><br/><br/><br/>
       <Weather/>
     </div>
   );
