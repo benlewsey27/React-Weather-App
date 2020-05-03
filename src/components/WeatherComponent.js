@@ -59,11 +59,11 @@ class WeatherComponent extends React.Component {
     return (
       <div>
         <center className='jumbotron mb-3 rounded-0'>
-          <h1 className="mt-4 mb-4">React Weather</h1>
+          <h1>React Weather</h1>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
 
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             {
               this.state.cards && this.state.cards.map(card => (
@@ -71,7 +71,7 @@ class WeatherComponent extends React.Component {
                   <div className="card text-white bg-success mb-3">
                     <div className="card-body">
                       <h4 className="card-title">{card.title}</h4>
-                      <p className="card-text">{card.body}</p>
+                      <p className="card-text">{card.body}</p><br/>
                       <button onClick={() => this.removeCard(card.id)} className="btn-danger rounded">Delete</button>
                     </div>
                   </div>
@@ -79,14 +79,15 @@ class WeatherComponent extends React.Component {
               ))
             }
 
-            <div className="card text-white bg-dark ml-3 col-sm-12 col-md-2">
-              <div className="card-body">
-                <h4 className="card-title">New Country?</h4>
-                <p className="card-text"><input className="card-text" type="text" id="input"></input></p>
-                <button onClick={() => {this.addElement()}} className="btn-success rounded">Submit</button>
+            <div className="col-md-4">
+              <div className="card text-black bg-light mb-3">
+                <div className="card-body">
+                  <h4 className="card-title">Add Country</h4>
+                  <div><input className="mb-2" type="text" id="input"></input></div><br/>
+                  <button onClick={() => this.addElement()} className="btn-success rounded">Submit</button>
+                </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
