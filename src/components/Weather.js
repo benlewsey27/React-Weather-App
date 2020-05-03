@@ -2,9 +2,7 @@ import React from "react";
 import uuid from 'uuid';
 import axios from 'axios';
 
-import WeatherCard from "./WeatherCard";
-
-class WeatherComponent extends React.Component {
+class Weather extends React.Component {
   state = {
     cards: []
   };
@@ -60,16 +58,41 @@ class WeatherComponent extends React.Component {
   render() {
     return (
       <div>
-        <center className='jumbotron mb-0 rounded-0'>
-          <h1 className="mt-4 mb-4">React Weather</h1>
-          <input type="text" id="input"></input>
-          <button className='mb-4 ml-2 rounded' onClick={() => {this.addElement()}}>Submit</button>
+        <center className='jumbotron mb-3 rounded-0'>
+          <h1>React Weather</h1>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
-        <WeatherCard cards={this.state.cards} removeCard={this.removeCard.bind(this)} />
+
+        <div className="container">
+          <div className="row">
+            {
+              this.state.cards && this.state.cards.map(card => (
+                <div key={card.id} className="col-sm-12 col-md-4">
+                  <div className="card text-white bg-success mb-3">
+                    <div className="card-body">
+                      <h4 className="card-title">{card.title}</h4>
+                      <p className="card-text">{card.body}</p><br/>
+                      <button onClick={() => this.removeCard(card.id)} className="btn-danger rounded">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
+            <div className="col-md-4">
+              <div className="card text-black bg-light mb-3">
+                <div className="card-body">
+                  <h4 className="card-title">Add Country</h4>
+                  <div><input className="mb-2" type="text" id="input"></input></div><br/>
+                  <button onClick={() => this.addElement()} className="btn-success rounded">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default WeatherComponent;
+export default Weather;
