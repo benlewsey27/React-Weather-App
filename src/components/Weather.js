@@ -31,7 +31,6 @@ class Weather extends React.Component {
 
   async addElement() {
     const inputForm = document.getElementById("input");
-    const errorMessage = document.getElementById("error");
 
     if (inputForm.value) {
       try{
@@ -41,7 +40,6 @@ class Weather extends React.Component {
         const body = `The tempature is ${temp} degrees celcius.`
 
         inputForm.value = "";
-        errorMessage.style.display = 'none';
 
         const newArray = this.state.cards.concat({ id: uuid.v1(), title: title, body: body });
         this.setState({
@@ -49,7 +47,6 @@ class Weather extends React.Component {
         });
       }catch(err){
         console.log(err);
-        errorMessage.style.display = 'block';
         inputForm.value = "";
       }
     }
@@ -58,11 +55,6 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
-        <center className='jumbotron mb-3 rounded-0'>
-          <h1>React Weather</h1>
-          <p id="error" className='mb-0'>Error: Unknown Place</p>
-        </center>
-
         <div className="container">
           <div className="row">
             {
