@@ -31,6 +31,7 @@ class Weather extends React.Component {
 
   async addElement() {
     const inputForm = document.getElementById("input");
+    const errorAlert = document.getElementById("alert");
 
     if (inputForm.value) {
       try{
@@ -40,6 +41,7 @@ class Weather extends React.Component {
         const body = `The tempature is ${temp}\xB0C.`
 
         inputForm.value = "";
+        errorAlert.classList.add('d-none');
 
         const newArray = this.state.cards.concat({ id: uuid.v1(), title: title, body: body });
         this.setState({
@@ -47,7 +49,9 @@ class Weather extends React.Component {
         });
       }catch(err){
         console.log(err);
+        
         inputForm.value = "";
+        errorAlert.classList.remove('d-none');
       }
     }
   }
@@ -56,6 +60,11 @@ class Weather extends React.Component {
     return (
       <div>
         <div className="container">
+
+        <div className="alert alert-danger d-none" id="alert">
+          <strong>404 Error:</strong> City not found
+        </div>
+
           <div className="row">
             {
               this.state.cards && this.state.cards.map(card => (
@@ -74,7 +83,7 @@ class Weather extends React.Component {
             <div className="col-md-4">
               <div className="card text-black bg-light mb-3">
                 <div className="card-body">
-                  <h4 className="card-title">Add Country</h4>
+                  <h4 className="card-title">Add City</h4>
                   <div><input className="mb-2" type="text" id="input"></input></div><br/>
                   <button onClick={() => this.addElement()} className="btn-success rounded">Submit</button>
                 </div>
