@@ -2,8 +2,6 @@ import React from "react";
 import uuid from 'uuid';
 import axios from 'axios';
 
-import WeatherCard from "./WeatherCard";
-
 class WeatherComponent extends React.Component {
   state = {
     cards: []
@@ -60,13 +58,37 @@ class WeatherComponent extends React.Component {
   render() {
     return (
       <div>
-        <center className='jumbotron mb-0 rounded-0'>
+        <center className='jumbotron mb-3 rounded-0'>
           <h1 className="mt-4 mb-4">React Weather</h1>
-          <input type="text" id="input"></input>
-          <button className='mb-4 ml-2 rounded' onClick={() => {this.addElement()}}>Submit</button>
           <p id="error" className='mb-0'>Error: Unknown Place</p>
         </center>
-        <WeatherCard cards={this.state.cards} removeCard={this.removeCard.bind(this)} />
+
+        <div className="container-fluid">
+          <div className="row">
+            {
+              this.state.cards && this.state.cards.map(card => (
+                <div key={card.id} className="col-sm-12 col-md-4">
+                  <div className="card text-white bg-success mb-3">
+                    <div className="card-body">
+                      <h4 className="card-title">{card.title}</h4>
+                      <p className="card-text">{card.body}</p>
+                      <button onClick={() => this.removeCard(card.id)} className="btn-danger rounded">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
+            <div className="card text-white bg-dark ml-3 col-sm-12 col-md-2">
+              <div className="card-body">
+                <h4 className="card-title">New Country?</h4>
+                <p className="card-text"><input className="card-text" type="text" id="input"></input></p>
+                <button onClick={() => {this.addElement()}} className="btn-success rounded">Submit</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
       </div>
     );
   }
