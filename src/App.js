@@ -3,7 +3,7 @@ import './App.css';
 
 import WeatherComponent from './components/WeatherComponent';
 
-function App(props) {
+function App() {
   return (
     <div>
       <WeatherComponent/>
