@@ -4,7 +4,7 @@ services:
     react-weather:
         container_name: react-weather
         image: react-weather:1.0
-        build: .
+        build: ./frontend
         environment: 
           - REACT_APP_WEATHER_API_KEY=$REACT_APP_WEATHER_API_KEY
         ports: 
