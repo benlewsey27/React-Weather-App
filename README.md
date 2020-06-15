@@ -1,7 +1,7 @@
 # React Weather
 Aim: Create a sample project using React.js and OpenWeatherMap API.
 
-[![](./images/MainPage.png)](#)
+[![](./docs/MainPage.png)](#)
 
 ## Run Local
 ``` bash
