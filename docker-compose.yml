@@ -8,4 +8,4 @@ services:
     environment:
       - REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}
     ports:
-      - 3000:3000
+      - 5000:5000

@@ -13,7 +13,7 @@ set -a && source .env
 docker-compose build
 docker-compose up
 
-# Open on https://localhost:3000
+# Open on https://localhost:5000
 ```
 
 **Otherwise use:**
@@ -23,7 +23,7 @@ export REACT_APP_WEATHER_API_KEY = <OPEN WEATHER MAP API KEY>
 docker-compose build
 docker-compose up
 
-# Open on https://localhost:3000
+# Open on https://localhost:5000
 ```
 
 This project was created with [Create React App](https://github.com/facebook/create-react-app).
