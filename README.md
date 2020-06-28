@@ -1,10 +1,24 @@
 # React Weather
+
 Aim: Create a sample project using React.js and OpenWeatherMap API.
 
 [![](./docs/MainPage.png)](#)
 
 ## Run Local
-``` bash
+
+**If using .env run below:**
+
+```bash
+set -a && source .env
+docker-compose build
+docker-compose up
+
+# Open on https://localhost:3000
+```
+
+**Otherwise use:**
+
+```bash
 export REACT_APP_WEATHER_API_KEY = <OPEN WEATHER MAP API KEY>
 docker-compose build
 docker-compose up
