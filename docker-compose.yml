@@ -1,13 +1,11 @@
-version: '3'
+version: "3"
 
 services:
-    react-weather:
-        container_name: react-weather
-        image: react-weather:1.0
-        build: ./frontend
-        environment: 
-          - REACT_APP_WEATHER_API_KEY=$REACT_APP_WEATHER_API_KEY
-        ports: 
-            - 3000:3000
-        
-        
+  react-weather:
+    container_name: react-weather
+    image: react-weather:1.0
+    build: .
+    environment:
+      - REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}
+    ports:
+      - 5000:5000
