@@ -14,7 +14,7 @@ React Weather uses 3 docker containers:
 
 **Known Issues**
 
-- API Key is exposed in Developer Tools > Network (A backend will be used to hide mask request)
+- API Key is exposed in Developer Tools > Network (A backend will be used to mask request)
 - React Build cannot use environment variables as it uses static render (.env file is used)
 
 ## Run Local
