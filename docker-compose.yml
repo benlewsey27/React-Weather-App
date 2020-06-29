@@ -1,11 +1,16 @@
 version: "3"
 
 services:
-  react-weather:
-    container_name: react-weather
-    image: react-weather:1.0
-    build: .
-    environment:
-      - REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}
+  react-weather-frontend:
+    container_name: react-weather-frontend
+    image: react-weather-frontend:1.0
+    build: ./frontend
+
+  react-weather-ngnix:
+    container_name: react-weather-ngnix
+    image: react-weather-ngnix:1.0
+    build: ./nginx
     ports:
-      - 5000:5000
+      - 8000:80
+    links:
+      - react-weather-frontend:frontend
