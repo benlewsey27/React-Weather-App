@@ -12,25 +12,17 @@ React Weather uses three docker containers:
 - Express Backend
 - NGINX Reverse Proxy
 
-**Known Issues**
+:warning:You will need a Current Weather Data API Key from [Open Weather Map](https://openweathermap.org/) to use this service.
 
-- React Build cannot use environment variables as it uses static render (.env file is used)
+## Running Locally
 
-## Run Local
-
-1. Create a .env file and store in the backend directory. It's contents should be as below:
-
-```
-WEATHER_API_KEY={ OpenWeatherMap API Key }
-```
-
-2. Run the below in the terminal:
+Run the below in the terminal:
 
 ```bash
+export WEATHER_API_KEY={OpenWeatherMap API Key}
+
 docker-compose build
 docker-compose up
 
 # Open on http://localhost:8000
 ```
-
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
