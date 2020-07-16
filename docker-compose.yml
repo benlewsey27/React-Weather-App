@@ -6,6 +6,11 @@ services:
     image: react-weather-frontend:1.0
     build: ./frontend
 
+  react-weather-backend:
+    container_name: react-weather-backend
+    image: react-weather-backend:1.0
+    build: ./backend
+
   react-weather-ngnix:
     container_name: react-weather-ngnix
     image: react-weather-ngnix:1.0
@@ -14,3 +19,4 @@ services:
       - 8000:80
     links:
       - react-weather-frontend:frontend
+      - react-weather-backend:backend
