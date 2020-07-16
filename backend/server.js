@@ -4,7 +4,7 @@ const axios = require("axios");
 require("dotenv").config();
 const app = express();
 
-app.get("/api/v1/get-temperature/:city", async (req, res) => {
+app.get("/api/get-temperature/:city", async (req, res) => {
   const { city } = req.params;
   const apiKey = process.env.WEATHER_API_KEY;
 
