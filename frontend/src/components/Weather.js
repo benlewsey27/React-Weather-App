@@ -15,16 +15,12 @@ class Weather extends React.Component {
     });
   }
 
-  async getTempature(place) {
-    // Get API_Key from https://openweathermap.org/api
-    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-    const response = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${apiKey}`
+  async getTempature(city) {
+    const { data } = await axios.get(
+      `http://localhost:8000/api/get-temperature/${city}`
     );
 
-    const temp = Math.round((response.data.main.temp - 273.15) * 10) / 10;
-    return temp;
+    return data.temperature;
   }
 
   formatTitle(title) {
