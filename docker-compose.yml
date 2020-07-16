@@ -10,8 +10,6 @@ services:
     container_name: react-weather-backend
     image: react-weather-backend:1.0
     build: ./backend
-    ports:
-      - 3001:3001
 
   react-weather-ngnix:
     container_name: react-weather-ngnix
@@ -21,3 +19,4 @@ services:
       - 8000:80
     links:
       - react-weather-frontend:frontend
+      - react-weather-backend:backend
