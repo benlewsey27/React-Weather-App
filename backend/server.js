@@ -1,7 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-
-require("dotenv").config();
 const app = express();
 
 app.get("/api/get-temp/:city", async (req, res) => {
