@@ -12,7 +12,9 @@ React Weather uses three docker containers:
 - Express Backend
 - NGINX Reverse Proxy
 
-:warning:You will need a Current Weather Data API Key from [Open Weather Map](https://openweathermap.org/) to use this service.
+## Requirements
+
+- A Current Weather Data API Key from [Open Weather Map](https://openweathermap.org/)
 
 ## Running Locally
 
