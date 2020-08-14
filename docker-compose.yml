@@ -3,12 +3,12 @@ version: '3'
 services:
   frontend:
     container_name: react-weather-frontend
-    image: react-weather-frontend:1.0
+    image: benlewsey27/react-weather-frontend:1.0
     build: ./frontend
 
   backend:
     container_name: react-weather-backend
-    image: react-weather-backend:1.0
+    image: benlewsey27/react-weather-backend:1.0
     environment:
       - WEATHER_API_KEY=${WEATHER_API_KEY}
     build: ./backend
