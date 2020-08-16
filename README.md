@@ -6,11 +6,10 @@ Aim: Create a sample project using React.js and OpenWeatherMap API.
 
 ## Overview
 
-React Weather uses three docker containers:
+React Weather uses two docker containers:
 
-- React Frontend
+- React Frontend (using NGINX Reverse Proxy)
 - Express Backend
-- NGINX Reverse Proxy
 
 ## Requirements
 
