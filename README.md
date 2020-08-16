@@ -27,3 +27,8 @@ docker-compose up
 
 # Open on http://localhost:8000
 ```
+
+## Roadmap
+[x] Deploy application to local kubernetes cluster
+[ ] Deploy application to cloud-based kubernetes cluster
+[ ] Create CI/CD pipeline to build and push images
