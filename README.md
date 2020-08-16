@@ -29,6 +29,6 @@ docker-compose up
 ```
 
 ## Roadmap
-[x] Deploy application to local kubernetes cluster
-[ ] Deploy application to cloud-based kubernetes cluster
-[ ] Create CI/CD pipeline to build and push images
+- [x] Deploy application to local kubernetes cluster
+- [ ] Deploy application to cloud-based kubernetes cluster
+- [ ] Create CI/CD pipeline to build and push images
