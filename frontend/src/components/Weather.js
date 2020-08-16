@@ -17,7 +17,7 @@ class Weather extends React.Component {
 
   async getTempature(city) {
     const { data } = await axios.get(
-      `http://localhost:8000/api/get-temp/${city}`
+      `/api/get-temp/${city}`
     );
 
     return data.temp;
