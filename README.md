@@ -30,5 +30,5 @@ docker-compose up
 
 ## Roadmap
 - [x] Deploy application to local kubernetes cluster
-- [ ] Deploy application to cloud-based kubernetes cluster
+- [x] Deploy application to cloud-based kubernetes cluster (AWS EKS)
 - [ ] Create CI/CD pipeline to build and push images
