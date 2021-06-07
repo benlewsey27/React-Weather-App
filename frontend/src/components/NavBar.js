@@ -1,11 +1,11 @@
-import React from 'react';
+import { Navbar, Container } from "react-bootstrap";
 
-function NavBar(){
-  return(
-    <nav className="navbar navbar-dark bg-success fixed-top">
-      <h1 className="navbar-brand">React Weather</h1>
-    </nav>
-  );
-}
+const NavBar = () => (
+  <Navbar bg="success" variant="dark">
+    <Container>
+      <Navbar.Brand>React Weather</Navbar.Brand>
+    </Container>
+  </Navbar>
+);
 
 export default NavBar;

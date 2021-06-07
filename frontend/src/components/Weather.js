@@ -1,110 +1,113 @@
-import React from "react";
+import { useState } from "react";
+import {
+  Alert,
+  Col,
+  Container,
+  Row,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import { v1 as uuidv1 } from "uuid";
 import axios from "axios";
 
-class Weather extends React.Component {
-  state = {
-    cards: [],
+const Weather = () => {
+  const [cards, setCards] = useState([]);
+  const [error, setError] = useState(false);
+
+  const formatTitle = (title) => title.charAt(0).toUpperCase() + title.slice(1);
+
+  const removeCard = (id) => {
+    const newArray = cards.filter((item) => item.id !== id);
+    setCards(newArray);
   };
 
-  removeCard(id) {
-    let newArray = this.state.cards.filter((item) => item.id !== id);
-
-    this.setState({
-      cards: newArray,
-    });
-  }
-
-  async getTempature(city) {
+  const getTempature = async (city) => {
     const { data } = await axios.get(`/api/get-temp/${city}`);
     return data.temp;
-  }
+  };
 
-  formatTitle(title) {
-    return title.charAt(0).toUpperCase() + title.slice(1);
-  }
-
-  async addElement() {
+  const addElement = async () => {
     const inputForm = document.getElementById("input");
-    const errorAlert = document.getElementById("alert");
 
     if (inputForm.value) {
       try {
-        const title = this.formatTitle(inputForm.value);
-        const temp = await this.getTempature(title);
+        const title = formatTitle(inputForm.value);
+        const temp = await getTempature(title);
 
         const body = `The tempature is ${temp}\xB0C.`;
 
         inputForm.value = "";
-        errorAlert.classList.add("d-none");
+        setError(false);
 
-        const newArray = this.state.cards.concat({
+        const newArray = cards.concat({
           id: uuidv1(),
           title: title,
           body: body,
         });
-        this.setState({
-          cards: newArray,
-        });
-      } catch (err) {
-        console.log(err);
 
+        setCards(newArray);
+      } catch (err) {
         inputForm.value = "";
-        errorAlert.classList.remove("d-none");
+        setError(true);
       }
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <div className="container">
-          <div className="alert alert-danger d-none" id="alert">
+  return (
+    <div>
+      <Container className="mt-4">
+        {error && (
+          <Alert variant="danger">
             <strong>404 Error:</strong> City not found
-          </div>
+          </Alert>
+        )}
 
-          <div className="row">
-            {this.state.cards &&
-              this.state.cards.map((card) => (
-                <div key={card.id} className="col-sm-12 col-md-4">
-                  <div className="card text-white bg-success mb-3">
-                    <div className="card-body">
-                      <h4 className="card-title">{card.title}</h4>
-                      <p className="card-text">{card.body}</p>
-                      <br />
-                      <button
-                        onClick={() => this.removeCard(card.id)}
-                        className="btn-danger rounded"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+        <Row>
+          {cards &&
+            cards.map((card) => (
+              <Col key={card.id} sm={12} md={4}>
+                <Card className="mb-3 bg-success text-white">
+                  <Card.Body>
+                    <Card.Title>{card.title}</Card.Title>
+                    <Card.Text>{card.body}</Card.Text>
+                    <Button
+                      variant="danger"
+                      onClick={() => removeCard(card.id)}
+                      className="mt-4"
+                    >
+                      Delete
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
 
-            <div className="col-md-4">
-              <div className="card text-black bg-light mb-3">
-                <div className="card-body">
-                  <h4 className="card-title">Add City</h4>
-                  <div>
-                    <input className="mb-2" type="text" id="input"></input>
-                  </div>
-                  <br />
-                  <button
-                    onClick={() => this.addElement()}
-                    className="btn-success rounded"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+          <Col sm={12} md={4}>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title>Add City</Card.Title>
+                <Card.Text>
+                  <Form>
+                    <Form.Group
+                      as={Row}
+                      className="ml-0 mr-0 mb-4"
+                      controlId="test"
+                    >
+                      <Form.Control type="text" id="input" />
+                    </Form.Group>
+                  </Form>
+                </Card.Text>
+                <Button variant="success" onClick={() => addElement()}>
+                  Submit
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
 export default Weather;
