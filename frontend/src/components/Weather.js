@@ -1,9 +1,19 @@
 import { useState } from "react";
+import {
+  Alert,
+  Col,
+  Container,
+  Row,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import { v1 as uuidv1 } from "uuid";
 import axios from "axios";
 
 const Weather = () => {
   const [cards, setCards] = useState([]);
+  const [error, setError] = useState(false);
 
   const formatTitle = (title) => title.charAt(0).toUpperCase() + title.slice(1);
 
@@ -17,10 +27,8 @@ const Weather = () => {
     return data.temp;
   };
 
-  // TODO: Use Conditional Formatting Instead!
   const addElement = async () => {
     const inputForm = document.getElementById("input");
-    const errorAlert = document.getElementById("alert");
 
     if (inputForm.value) {
       try {
@@ -30,7 +38,7 @@ const Weather = () => {
         const body = `The tempature is ${temp}\xB0C.`;
 
         inputForm.value = "";
-        errorAlert.classList.add("d-none");
+        setError(false);
 
         const newArray = cards.concat({
           id: uuidv1(),
@@ -40,60 +48,64 @@ const Weather = () => {
 
         setCards(newArray);
       } catch (err) {
-        console.log(err);
-
         inputForm.value = "";
-        errorAlert.classList.remove("d-none");
+        setError(true);
       }
     }
   };
 
   return (
     <div>
-      <div className="container">
-        <div className="alert alert-danger d-none" id="alert">
-          <strong>404 Error:</strong> City not found
-        </div>
+      <Container className="mt-4">
+        {error && (
+          <Alert variant="danger">
+            <strong>404 Error:</strong> City not found
+          </Alert>
+        )}
 
-        <div className="row">
+        <Row>
           {cards &&
             cards.map((card) => (
-              <div key={card.id} className="col-sm-12 col-md-4">
-                <div className="card text-white bg-success mb-3">
-                  <div className="card-body">
-                    <h4 className="card-title">{card.title}</h4>
-                    <p className="card-text">{card.body}</p>
-                    <br />
-                    <button
+              <Col key={card.id} sm={12} md={4}>
+                <Card className="mb-3 bg-success text-white">
+                  <Card.Body>
+                    <Card.Title>{card.title}</Card.Title>
+                    <Card.Text>{card.body}</Card.Text>
+                    <Button
+                      variant="danger"
                       onClick={() => removeCard(card.id)}
-                      className="btn-danger rounded"
+                      className="mt-4"
                     >
                       Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
 
-          <div className="col-md-4">
-            <div className="card text-black bg-light mb-3">
-              <div className="card-body">
-                <h4 className="card-title">Add City</h4>
-                <div>
-                  <input className="mb-2" type="text" id="input"></input>
-                </div>
-                <br />
-                <button
-                  onClick={() => addElement()}
-                  className="btn-success rounded"
-                >
+          <Col sm={12} md={4}>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title>Add City</Card.Title>
+                <Card.Text>
+                  <Form>
+                    <Form.Group
+                      as={Row}
+                      className="ml-0 mr-0 mb-4"
+                      controlId="test"
+                    >
+                      <Form.Control type="text" id="input" />
+                    </Form.Group>
+                  </Form>
+                </Card.Text>
+                <Button variant="success" onClick={() => addElement()}>
                   Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
