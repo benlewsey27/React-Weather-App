@@ -1,5 +1,5 @@
 import React from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import axios from "axios";
 
 class Weather extends React.Component {
@@ -16,10 +16,7 @@ class Weather extends React.Component {
   }
 
   async getTempature(city) {
-    const { data } = await axios.get(
-      `/api/get-temp/${city}`
-    );
-
+    const { data } = await axios.get(`/api/get-temp/${city}`);
     return data.temp;
   }
 
@@ -42,7 +39,7 @@ class Weather extends React.Component {
         errorAlert.classList.add("d-none");
 
         const newArray = this.state.cards.concat({
-          id: uuid.v1(),
+          id: uuidv1(),
           title: title,
           body: body,
         });
