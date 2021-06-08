@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { v1 as uuidv1 } from "uuid";
+import axios from "axios";
 import {
   Alert,
   Col,
@@ -8,8 +10,6 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
-import { v1 as uuidv1 } from "uuid";
-import axios from "axios";
 
 const Weather = () => {
   const [cards, setCards] = useState([]);
@@ -54,6 +54,24 @@ const Weather = () => {
     }
   };
 
+  const displayCards = cards.map((card) => (
+    <Col key={card.id} sm={12} md={4}>
+      <Card className="mb-3 bg-success text-white">
+        <Card.Body>
+          <Card.Title>{card.title}</Card.Title>
+          <Card.Text>{card.body}</Card.Text>
+          <Button
+            variant="danger"
+            onClick={() => removeCard(card.id)}
+            className="mt-4"
+          >
+            Delete
+          </Button>
+        </Card.Body>
+      </Card>
+    </Col>
+  ));
+
   return (
     <div>
       <Container className="mt-4">
@@ -64,24 +82,7 @@ const Weather = () => {
         )}
 
         <Row>
-          {cards &&
-            cards.map((card) => (
-              <Col key={card.id} sm={12} md={4}>
-                <Card className="mb-3 bg-success text-white">
-                  <Card.Body>
-                    <Card.Title>{card.title}</Card.Title>
-                    <Card.Text>{card.body}</Card.Text>
-                    <Button
-                      variant="danger"
-                      onClick={() => removeCard(card.id)}
-                      className="mt-4"
-                    >
-                      Delete
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+          {displayCards}
 
           <Col sm={12} md={4}>
             <Card className="mb-3">
