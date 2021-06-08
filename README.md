@@ -2,7 +2,7 @@
 
 Aim: Create a sample project using React.js and OpenWeatherMap API.
 
-[![](./docs/MainPage.png)](#)
+<img src='./docs/MainPage.png' alt='React Weather Display'>
 
 ## Overview
 
@@ -52,6 +52,7 @@ kubectl delete -f ./deploy/<local or aws>/frontend.yml
 Note: In steps 4 and 5, choose local or aws depending on required method.
 
 ## Roadmap
+
 - [x] Deploy application to local kubernetes cluster
 - [x] Deploy application to cloud-based kubernetes cluster (AWS EKS)
 - [ ] Create CI/CD pipeline to build and push images
