@@ -12,9 +12,6 @@ coverage
 # production
 build
 
-# sensitive config files
-secret.yml
-
 # misc
 .DS_Store
 .env
