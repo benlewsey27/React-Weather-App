@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-weather-frontend
+  labels:
+    app: react-weather-frontend
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: react-weather-frontend
+  template:
+    metadata:
+      labels:
+        app: react-weather-frontend
+    spec:
+      containers:
+      - name: main
+        image: {{ .Values.frontend.image.registry }}{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
+        {{- if .Values.frontend.env }}
+        env:
+          {{- range .Values.frontend.env }}
+          {{- if not .valueFrom }}
+          - name: {{ .name }}
+            value: {{ .value | quote }}
+          {{- else }}
+          - name: {{ .name }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .valueFrom.secretKeyRef.name }}
+                key: {{ .valueFrom.secretKeyRef.key }}          
+          {{- end }}
+          {{- end }}
+        {{- end }}
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.frontend.service.name }}
+spec:
+  type: {{ .Values.frontend.service.type }}
+  selector:
+    app: react-weather-frontend
+  ports:
+    - protocol: TCP
+      port: {{ .Values.frontend.service.port }}
+      targetPort: 80

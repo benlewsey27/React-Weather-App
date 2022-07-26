@@ -1,0 +1,23 @@
+frontend:
+  image:
+    registry: ghcr.io/benlewsey27/
+    repository: react-weather-frontend
+    tag: 1.0.0
+  service:
+    name: react-weather-frontend
+    type: NodePort
+
+backend:
+  image:
+    registry: ghcr.io/benlewsey27/
+    repository: react-weather-backend
+    tag: 1.0.0
+  service:
+    name: react-weather-backend
+    port: 3001
+  env:
+    - name: WEATHER_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: react-weather
+          key: WEATHER_API_KEY

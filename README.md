@@ -27,3 +27,9 @@ docker-compose up
 
 # Open on http://localhost:8000
 ```
+
+## Helm Deployment
+
+A Helm chart has been created for deploying this project to a Kubernetes environment. 
+
+Example deployment instructions can be found [here](./docs/deployment-notes.md).
