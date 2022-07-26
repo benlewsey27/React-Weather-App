@@ -1,0 +1,19 @@
+frontend:
+  replicas: 1
+  image:
+    repository: react-weather-frontend
+    tag: latest
+  service:
+    name: react-weather-frontend
+    type: ClusterIP
+    port: 8000
+
+backend:
+  replicas: 1
+  image:
+    repository: react-weather-backend
+    tag: latest
+  service:
+    name: react-weather-backend
+    type: ClusterIP
+    port: 8000
