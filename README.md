@@ -56,11 +56,11 @@ Phase 1
 - [X] Deploy HelmRelease via helmfile/GitOps
 
 Phase 2
-- [] Release image to Ghcr through GitHub Actions
+- [ ] Release image to Ghcr through GitHub Actions
 
 Phase 3
-- [] Improve Backend Logging
-- [] Improve Error Message on FE (always shows error code 404, when error is 500)
+- [ ] Improve Backend Logging
+- [ ] Improve Error Message on FE (always shows error code 404, when error is 500)
 
 Phase 4
-- [] Use nx for monorepo structure
+- [ ] Use nx for monorepo structure
