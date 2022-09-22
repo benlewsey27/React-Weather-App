@@ -44,7 +44,7 @@ helm push react-weather-<version>.tgz oci://ghcr.io/benlewsey27/charts
 
 I have provided a sample deployment to provide instructions for deploying this project to a Kubernetes cluster. It is assumed you have access to working images and charts in a remote registry. I am using GitHub Container Registry in this example.
 
-More information can be found in the `./docs/sample-deployment` folder.
+More information can be found in the `./docs/deployment.md` file.
 
 ## Roadmap
 
