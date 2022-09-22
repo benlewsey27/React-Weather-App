@@ -1,0 +1,21 @@
+frontend:
+  replicas: 1
+  image:
+    registry: ghcr.io/benlewsey27
+    repository: react-weather-frontend
+    tag: 0.2.0
+
+backend:
+  replicas: 1
+  image:
+    registry: ghcr.io/benlewsey27
+    repository: react-weather-backend
+    tag: 0.2.0
+  service:
+    port: 8000
+  env:
+    WEATHER_API_KEY:
+      valueFrom:
+        secretKeyRef:
+          name: react-weather
+          key: WEATHER_API_KEY

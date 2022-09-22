@@ -3,6 +3,7 @@ const controller = require('../controllers');
 
 const router = express.Router();
 
+router.get('/api/health', controller.health);
 router.get('/api/get-temp/:city', controller.getTemp);
 
 module.exports = router;

@@ -15,15 +15,52 @@ React Weather uses two docker containers:
 
 - A Current Weather Data API Key from [Open Weather Map](https://openweathermap.org/)
 
-## Running Locally
+## Deployment Guide
 
-Run the below in the terminal:
+Note: Currently the publishing of images and charts is a manual process. In Phase 2, I plan to use GitHub Actions to automate this process.
+
+Since I store the source code in GitHub, I have opted to store the images inside GitHub Container Registry.
+
+### Images
+
+The building and publishing of the Docker images is performed using the `./build.sh` script. This script builds 2 images:
+- ghcr.io/benlewsey27/react-weather-backend:$backendVersion
+- ghcr.io/benlewsey27/react-weather-frontend:$frontendVersion
+
+where:
+- `backendVersion` is the version value inside `./backend/package.json`
+- `frontendVersion` is the version value inside `./frontend/package.json`
+
+### Helm Chart
+
+The building and publishing of the Helm chart is performed using the following commands:
 
 ```bash
-export WEATHER_API_KEY={OpenWeatherMap API Key}
-
-docker-compose build
-docker-compose up
-
-# Open on http://localhost:8000
+helm package ./charts/react-weather
+helm push react-weather-<version>.tgz oci://ghcr.io/benlewsey27/charts
 ```
+
+### Sample Deployment
+
+I have provided a sample deployment to provide instructions for deploying this project to a Kubernetes cluster. It is assumed you have access to working images and charts in a remote registry. I am using GitHub Container Registry in this example.
+
+More information can be found in the `./docs/sample-deployment` folder.
+
+## Roadmap
+
+Phase 1
+- [X] Write Initial K8s Deployment Guide
+- [X] Improve Helm Chart Env Var Templating
+- [X] Check default values in chart
+- [X] Release non-rc images and chart to Ghcr
+- [X] Deploy HelmRelease via helmfile/GitOps
+
+Phase 2
+- [] Release image to Ghcr through GitHub Actions
+
+Phase 3
+- [] Improve Backend Logging
+- [] Improve Error Message on FE (always shows error code 404, when error is 500)
+
+Phase 4
+- [] Use nx for monorepo structure
