@@ -7,7 +7,7 @@ This sample deployment assumes the following:
 
 ## Initial Setup
 
-To prepare the kubernetes environment, complete the following steps:
+To prepare the kubernetes environment, complete the following steps from the `sample-deployment` directory:
 
 1. Create a namespace to hold the resources
 

@@ -1,6 +1,0 @@
-releases:
-  - name: react-weather
-    chart: oci://ghcr.io/benlewsey27/charts/react-weather
-    version: 0.1.0
-    values:
-      - ./values.yaml
