@@ -1,10 +1,10 @@
-FROM node:15.8-alpine
+FROM golang:1.17.1-alpine as build
 WORKDIR /app
+COPY ./src/main.go .
+RUN go env -w GO111MODULE=off
+RUN go build -o dist/backend
 
-COPY package.json .
-RUN npm install
-
-COPY ./src ./src
-
-EXPOSE 3001
-CMD [ "npm", "start" ]
+FROM alpine:latest  
+WORKDIR /app
+COPY --from=build /app/dist/backend /usr/bin/backend
+CMD [ "backend" ]
