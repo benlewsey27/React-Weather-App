@@ -9,7 +9,7 @@ Aim: Create a sample project using React.js and OpenWeatherMap API.
 React Weather uses two docker containers:
 
 - React Frontend (using NGINX Reverse Proxy)
-- Express Backend
+- Go Backend
 
 ## Requirements
 
@@ -28,7 +28,7 @@ The building and publishing of the Docker images is performed using the `./build
 - ghcr.io/benlewsey27/react-weather-frontend:$frontendVersion
 
 where:
-- `backendVersion` is the version value inside `./backend/package.json`
+- `backendVersion` is the version value inside `./backend/VERSION`
 - `frontendVersion` is the version value inside `./frontend/package.json`
 
 ### Helm Chart

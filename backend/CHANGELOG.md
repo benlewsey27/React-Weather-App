@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1]
+- Change get-temp endpoint to return temp to 1dp
+
+## [0.3.0]
+- Rewrite backend using Go
+
 ## [0.2.0]
 - Add /health endpoint
 - Add basic debug logging
