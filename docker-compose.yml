@@ -2,15 +2,15 @@ version: '3'
 
 services:
   frontend:
-    image: ghcr.io/benlewsey27/react-weather-frontend:0.2.0
-    container_name: frontend
+    image: ghcr.io/benlewsey27/react-weather:0.2.0
+    container_name: react-weather
     environment:
-      - BACKEND_URL=backend:3001
+      - BACKEND_URL=react-weather-api:3001
       - RESOLVER_IP=127.0.0.11
     ports:
       - "8000:80"
   backend:
-    image: ghcr.io/benlewsey27/react-weather-backend:0.3.1
-    container_name: backend
+    image: ghcr.io/benlewsey27/react-weather-api:0.3.1
+    container_name: react-weather-api
     environment:
       - WEATHER_API_KEY=$WEATHER_API_KEY

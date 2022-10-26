@@ -24,8 +24,8 @@ Since I store the source code in GitHub, I have opted to store the images inside
 ### Images
 
 The building and publishing of the Docker images is performed using the `./build.sh` script. This script builds 2 images:
-- ghcr.io/benlewsey27/react-weather-backend:$backendVersion
-- ghcr.io/benlewsey27/react-weather-frontend:$frontendVersion
+- ghcr.io/benlewsey27/react-weather-api:$backendVersion
+- ghcr.io/benlewsey27/react-weather:$frontendVersion
 
 where:
 - `backendVersion` is the version value inside `./backend/VERSION`

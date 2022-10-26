@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-weather-backend
+  name: react-weather-api
   labels:
-    app: react-weather-backend
+    app: react-weather-api
 spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
-      app: react-weather-backend
+      app: react-weather-api
   template:
     metadata:
       labels:
-        app: react-weather-backend
+        app: react-weather-api
     spec:
       containers:
       - name: main
@@ -42,7 +42,7 @@ metadata:
 spec:
   type: {{ .Values.backend.service.type }}
   selector:
-    app: react-weather-backend
+    app: react-weather-api
   ports:
     - protocol: TCP
       port: {{ .Values.backend.service.port }}

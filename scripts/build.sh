@@ -1,7 +1,7 @@
 #!/bin/bash
 
-backendVersion=$(cat backend/VERSION)
 frontendVersion=$(jq -r '.version' frontend/package.json)
+backendVersion=$(cat backend/VERSION)
 
-docker build -t ghcr.io/benlewsey27/react-weather-backend:$backendVersion ./backend 
-docker build -t ghcr.io/benlewsey27/react-weather-frontend:$frontendVersion ./frontend 
+docker build -t ghcr.io/benlewsey27/react-weather:$frontendVersion ./frontend 
+docker build -t ghcr.io/benlewsey27/react-weather-api:$backendVersion ./backend 

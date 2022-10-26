@@ -72,7 +72,7 @@ helmfile destroy
 This sample deployment will expose the frontend service internally using a ClusterIP service. To expose the service on your device, run the following:
 
 ```
-kubectl port-forward service/react-weather-frontend 8000:80
+kubectl port-forward service/react-weather 8000:80
 ```
 
 You will then be able to access the project on localhost:8000.
