@@ -2,4 +2,4 @@ apiVersion: v2
 name: react-weather
 description: A sample project using React.js and OpenWeatherMap API.
 type: application
-version: 0.1.0
+version: 0.2.0
