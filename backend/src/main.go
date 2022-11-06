@@ -73,7 +73,6 @@ func SendResponseJSON(res http.ResponseWriter, statusCode int, body map[string]s
 }
 
 func Health(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("Invoking Health...")
 	SendResponse(res, http.StatusOK, "")
 }
 
@@ -87,10 +86,19 @@ func GetTemp(res http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Getting tempature for city %s...\n", city)
 
 	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s", city, apiKey)
-	resp, err := http.Get(url)
-	if resp.StatusCode != 200 || err != nil {
-		defer resp.Body.Close()
-		body, _ := ioutil.ReadAll(resp.Body)
+	url_parsed := strings.TrimSuffix(url, "\n")
+	resp, err := http.Get(url_parsed)
+
+	if err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		SendResponse(res, http.StatusInternalServerError, "ERROR: Failed to retrive weather data")
+		return
+	}
+
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	if resp.StatusCode != 200 {
 		var result OpenWeatherMapError
 		json.Unmarshal(body, &result);
 
@@ -98,12 +106,9 @@ func GetTemp(res http.ResponseWriter, req *http.Request) {
 		SendResponse(res, http.StatusInternalServerError, "ERROR: Failed to retrive weather data")
 		return
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+
 	var result OpenWeatherMapResponse
-	if err := json.Unmarshal(body, &result); err != nil {
-		fmt.Printf("Can not unmarshal JSON, Err: %s\n", err)
-	}
+	json.Unmarshal(body, &result);
 
 	formatedTemp := fmt.Sprintf("%.1f", result.Main.Temp - 273.15)
 	fmt.Println("Request successful!")
