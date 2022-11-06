@@ -7,6 +7,3 @@ backendVersion=$(cat backend/VERSION)
 
 docker push ghcr.io/benlewsey27/react-weather:$frontendVersion
 docker push ghcr.io/benlewsey27/react-weather-api:$backendVersion
-
-docker rmi ghcr.io/benlewsey27/react-weather:$frontendVersion
-docker rmi ghcr.io/benlewsey27/react-weather-api:$backendVersion
