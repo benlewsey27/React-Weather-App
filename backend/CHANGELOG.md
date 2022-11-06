@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0]
+- Improve error handling around failed OpenWeatherMap responses
+- Fix OpenWeatherMap request by removing newline from url
+- Remove healthcheck log
+
 ## [0.3.1]
 - Change get-temp endpoint to return temp to 1dp
 
