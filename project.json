@@ -1,6 +1,5 @@
 {
   "name": "react-weather",
-  "version": "0.0.0",
   "description": "A sample project using React.js and OpenWeatherMap API.",
   "author": "Benjamin Lewsey",
   "license": "ISC"
