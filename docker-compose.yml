@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:80"
   backend:
-    image: ghcr.io/benlewsey27/react-weather-api:0.3.1
+    image: ghcr.io/benlewsey27/react-weather-api:0.4.0
     container_name: react-weather-api
     environment:
       - WEATHER_API_KEY=$WEATHER_API_KEY
