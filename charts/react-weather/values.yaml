@@ -11,6 +11,11 @@ frontend:
   env:
     BACKEND_URL: "{{ .Values.backend.service.name }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.backend.service.port }}"
     RESOLVER_IP: "kube-dns.kube-system.svc.cluster.local"
+  ingress:
+    enabled: false
+    ingressClass: nginx
+    host: react-weather.example.com
+    path: /
 
 backend:
   replicas: 1

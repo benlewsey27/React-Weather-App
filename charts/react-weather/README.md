@@ -1,6 +1,6 @@
 # react-weather
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A sample project using React.js and OpenWeatherMap API.
 
@@ -21,6 +21,10 @@ A sample project using React.js and OpenWeatherMap API.
 | frontend.image.registry | string | `"ghcr.io/benlewsey27"` |  |
 | frontend.image.repository | string | `"react-weather"` |  |
 | frontend.image.tag | string | `"latest"` |  |
+| frontend.ingress.enabled | bool | `false` |  |
+| frontend.ingress.host | string | `"react-weather.example.com"` |  |
+| frontend.ingress.ingressClass | string | `"nginx"` |  |
+| frontend.ingress.path | string | `"/"` |  |
 | frontend.replicas | int | `1` |  |
 | frontend.service.name | string | `"react-weather"` |  |
 | frontend.service.port | int | `80` |  |
