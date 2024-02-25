@@ -24,10 +24,20 @@ jobs:
 
       - name: Build frontend image
         run: |
-          docker build -t ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }} ./frontend
-          docker push ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }}
-      
+          versions=$(curl --silent -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GHCR_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/users/benlewsey27/packages/container/react-weather/versions)
+          if echo $versions | jq '.[0].metadata.container.tags' | grep {{ steps.vars.outputs.image_tag }} > /dev/null; then
+            echo "Container already exists. Skipping..."
+          else
+            docker build -t ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }} ./frontend
+            docker push ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }}
+          fi
+
       - name: Build backend image
         run: |
-          docker build -t ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} ./backend
-          docker push ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} 
+          versions=$(curl --silent -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GHCR_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/users/benlewsey27/packages/container/react-weather-api/versions)
+          if echo $versions | jq '.[0].metadata.container.tags' | grep {{ steps.vars.outputs.image_tag }} > /dev/null; then
+            echo "Container already exists. Skipping..."
+          else
+            docker build -t ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} ./backend
+            docker push ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }}
+          fi
