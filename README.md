@@ -64,3 +64,13 @@ Phase 3
 
 Phase 4
 - [ ] Use nx for monorepo structure
+
+
+
+ghcr.io/benlewsey27/react-weather:03451eb6
+ghcr.io/benlewsey27/react-weather-api:03451eb6
+
+feature/XXX (PR) -> image: 03451eb6, chart: 0.4.0
+main -> image: 2024.02-03451eb6, chart: 0.4.0
+
+create tag on main with release version (e.g. 2024.02)
