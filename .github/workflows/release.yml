@@ -1,0 +1,33 @@
+name: Release Artifacts
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: benlewsey27
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Set build variables
+        id: vars
+        run: echo "image_tag=$(cat VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Build frontend image
+        run: |
+          docker build -t ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }} ./frontend
+          docker push ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }}
+
+      - name: Build backend image
+        run: |
+          docker build -t ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} ./backend
+          docker push ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }}
