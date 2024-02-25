@@ -53,5 +53,5 @@ jobs:
             echo "Container already exists. Skipping..."
           else
             helm package ./charts/react-weather
-            helm push react-weather-${{ steps.vars.outputs.chart_version}}.tgz
+            helm push react-weather-${{ steps.vars.outputs.chart_version}}.tgz oci://ghcr.io/benlewsey27/charts
           fi
