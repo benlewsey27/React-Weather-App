@@ -20,7 +20,7 @@ jobs:
 
       - name: Set build variables
         id: vars
-        run: echo "image_tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: echo "image_tag=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build frontend image
         run: |
