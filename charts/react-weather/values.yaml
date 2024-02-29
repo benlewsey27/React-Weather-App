@@ -18,6 +18,7 @@ frontend:
     limits:
       memory: 64Mi
       cpu: 200m
+
 backend:
   replicas: 1
   image:
