@@ -25,7 +25,7 @@ func MockWeather(res http.ResponseWriter, req *http.Request) {
 	city := req.URL.Query().Get("q")
 	temp := GenerateMockTempature()
 
-	fmt.Printf("Mocking tempature for city %s...\n", city)
+	fmt.Printf("Mocking tempature for city %s to %f\n", city, temp)
 
 	bodyMain := make(map[string]interface{})
 	bodyMain["temp"] = temp
