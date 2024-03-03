@@ -82,10 +82,15 @@ func GetTemp(res http.ResponseWriter, req *http.Request) {
 		fmt.Println("WARNING: WEATHER_API_KEY not found!")
 	}
 
+	apiUrl, ok := os.LookupEnv("WEATHER_API_URL")
+	if !ok {
+		fmt.Println("WARNING: WEATHER_API_URL not found!")
+	}
+
 	city := strings.TrimPrefix(req.URL.Path, "/api/get-temp/")
 	fmt.Printf("Getting tempature for city %s...\n", city)
 
-	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s", city, apiKey)
+	url := fmt.Sprintf("%s?q=%s&APPID=%s", apiUrl, city, apiKey)
 	url_parsed := strings.TrimSuffix(url, "\n")
 	resp, err := http.Get(url_parsed)
 

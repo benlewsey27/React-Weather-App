@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0]
+
+### Backend
+- Move API URL to enviromment variable
+
+### Backend Mock
+- Add new backend mock application to remove depenency on OpenWeatherMap API
+
 ## [0.1.0]
 
 ### Frontend
