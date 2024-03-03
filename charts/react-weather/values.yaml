@@ -31,6 +31,26 @@ backend:
     port: 3001
   env:
     WEATHER_API_KEY: "XXXX"
+    WEATHER_API_URL: "http://api.openweathermap.org/data/2.5/weather"
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 200m
+    limits:
+      memory: 64Mi
+      cpu: 400m
+
+backendMock:
+  enabled: false
+  replicas: 2
+  image:
+    registry: ghcr.io/benlewsey27
+    repository: react-weather-mock
+    tag: latest
+  service:
+    name: react-weather-mock
+    type: ClusterIP
+    port: 3002
   resources:
     requests:
       memory: 64Mi

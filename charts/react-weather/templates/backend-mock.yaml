@@ -1,0 +1,55 @@
+{{- if .Values.backendMock.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-weather-mock
+  labels:
+    app: react-weather-mock
+spec:
+  replicas: {{ .Values.backendMock.replicas }}
+  selector:
+    matchLabels:
+      app: react-weather-mock
+  template:
+    metadata:
+      labels:
+        app: react-weather-mock
+    spec:
+      containers:
+      - name: main
+        image: {{ .Values.backendMock.image.registry }}/{{ .Values.backendMock.image.repository }}:{{ .Values.backendMock.image.tag }}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3002
+          initialDelaySeconds: 10
+          periodSeconds: 4
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3002
+          initialDelaySeconds: 2
+          periodSeconds: 2
+        ports:
+        - containerPort: 3001
+        resources:
+          requests:
+            memory: {{ .Values.backendMock.resources.requests.memory }}
+            cpu: {{ .Values.backendMock.resources.requests.cpu }}
+          limits:
+            memory: {{ .Values.backendMock.resources.limits.memory }}
+            cpu: {{ .Values.backendMock.resources.limits.cpu }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.backendMock.service.name }}
+spec:
+  type: {{ .Values.backendMock.service.type }}
+  selector:
+    app: react-weather-mock
+  ports:
+    - protocol: TCP
+      port: {{ .Values.backendMock.service.port }}
+      targetPort: 3002
+{{- end }}
