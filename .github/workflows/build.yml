@@ -2,7 +2,7 @@ name: Build Artifacts
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build-images:
