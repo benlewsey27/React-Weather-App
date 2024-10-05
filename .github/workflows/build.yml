@@ -34,7 +34,7 @@ jobs:
           fi
           set -e
 
-          docker build -t ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }} ./frontend
+          docker build -t ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }} ./apps/frontend
           docker push ghcr.io/benlewsey27/react-weather:${{ steps.vars.outputs.image_tag }}
 
       - name: Build backend image
@@ -49,7 +49,7 @@ jobs:
           fi
           set -e
 
-          docker build -t ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} ./backend
+          docker build -t ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }} ./apps/backend
           docker push ghcr.io/benlewsey27/react-weather-api:${{ steps.vars.outputs.image_tag }}
 
       - name: Build backend  mock image
@@ -64,5 +64,5 @@ jobs:
           fi
           set -e
 
-          docker build -t ghcr.io/benlewsey27/react-weather-mock:${{ steps.vars.outputs.image_tag }} ./backend-mock
+          docker build -t ghcr.io/benlewsey27/react-weather-mock:${{ steps.vars.outputs.image_tag }} ./apps/backend-mock
           docker push ghcr.io/benlewsey27/react-weather-mock:${{ steps.vars.outputs.image_tag }}
