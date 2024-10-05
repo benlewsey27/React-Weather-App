@@ -9,7 +9,7 @@ services:
       - RESOLVER_IP=127.0.0.11
     ports:
       - "8000:80"
-    build: ./frontend
+    build: ./apps/frontend
 
   backend:
     image: ghcr.io/benlewsey27/react-weather-api:latest
@@ -17,9 +17,9 @@ services:
     environment:
       - WEATHER_API_KEY=$WEATHER_API_KEY
       - WEATHER_API_URL=http://react-weather-mock:3002/weather
-    build: ./backend
+    build: ./apps/backend
   
   backendMock:
     image: ghcr.io/benlewsey27/react-weather-mock:latest
     container_name: react-weather-mock
-    build: ./backend-mock
+    build: ./apps/backend-mock
